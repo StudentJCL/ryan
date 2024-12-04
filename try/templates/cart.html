@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+</head>
+<body>
+    <div>
+        <h1>Your Cart</h1>
+        <div>
+            {% if cart_items %}
+                <h2>Products Ordered</h2>
+                <form action="{{ url_for('checkout') }}" method="POST">
+                    <ul>
+                        {% for item in cart_items %}
+                            <li>
+                                <input type="checkbox" name="selected_products" value="{{ item.id }}">
+                                <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="Image of {{ item.name }}">
+                                <div>
+                                    <h3>{{ item.name }}</h3>
+                                    <p><strong>Variation:</strong> {{ item.variation }}</p>
+                                    <p><strong>Unit Price:</strong> {{ item.unit_price }}</p>
+                                    <p><strong>Quantity:</strong> <input type="number" name="quantities" value="1" min="1"></p>
+                                    <p><strong>Item Subtotal:</strong> P{{ item.subtotal }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ url_for('remove_from_cart', item_id=item.id) }}">
+                        Remove
+                    </a>
+                    <button type="submit">Checkout</button>
+                </form>
+            {% else %}
+                <p>Your cart is empty.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

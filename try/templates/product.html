@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        /* Body and Main Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+    
+        /* Header and Navigation Bar */
+        header {
+            background-color: #4CAF50; /* Green background */
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+        }
+        nav ul li a:hover {
+            background-color: #45a049; /* Darker green on hover */
+            border-radius: 5px;
+        }
+    
+        /* Button Styling */
+        .button {
+            padding: 10px 20px;
+            background-color: #28a745; /* Green button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;  /* Add margin for spacing */
+        }
+        .button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+    
+        /* Special Button Styling for "Become a Seller" */
+        .become-seller-button {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+        .become-seller-button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+    
+            /* Banner Section */
+            .banner {
+                background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 20px;
+                flex-direction: column;  /* Center items vertically */
+            }
+            .banner h1 {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+    
+            /* Button Styling */
+            .button {
+                padding: 10px 20px;
+                background-color: #28a745;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 20px;  /* Add margin for spacing */
+            }
+            .button:hover {
+                background-color: #218838;
+            }
+    
+            /* Featured Products Section */
+            .products {
+                padding: 40px 20px;
+                text-align: center;
+            }
+            .products h2 {
+                margin-bottom: 20px;
+                font-size: 2rem;
+            }
+            .product-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+            }
+            .product-item {
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                width: 200px;
+                text-align: center;
+            }
+            .product-item img {
+                width: 100%;
+                border-radius: 5px;
+            }
+            .product-item h3 {
+                margin: 10px 0;
+                font-size: 1.2rem;
+            }
+            .product-item p {
+                color: #888;
+            }
+            .product-item button {
+                padding: 10px 20px;
+                background-color: #28a745;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+            .product-item button:hover {
+                background-color: #218838;
+            }
+    
+            /* Footer */
+            footer {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 20px 0;
+                margin-top: 40px;
+            }
+            /*new style for flash sales copy it to seller homepage */
+    
+            .container {
+            border: 2px solid #000; 
+            padding: 20px; 
+            margin: 20px; 
+            border-radius: 8px;
+            background-color: #000; 
+        }
+    
+        #productSlider {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px; 
+        }
+    
+        #productSlider > div {
+            flex: 0 0 auto;
+            width: 220px; 
+            border: 2px solid #ccc; 
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center; 
+            background-color: #fff;
+        }
+        
+            img {
+                max-width: 100%; 
+                height: auto; 
+            }
+            #cbtn {
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                padding: 20px;
+            }
+    
+            #cbtn a {
+                text-decoration: none;
+                color: white;
+                background-color: Green;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 16px;
+                transition: background-color 0.3s, transform 0.3s;
+                display: inline-block;
+                text-align: center;
+            }
+    
+            #cbtn a:hover {
+                background-color: darkred;
+                transform: scale(1.1);
+            }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="{{ url_for('sellerdashboard') }}">Seller Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class = "categorybtn" id = "cbtn">
+        <a href="{{ url_for('laptop') }}">Laptop</a>
+        <a href="{{ url_for('cellphone') }}">Cellphone</a>
+        <a href="{{ url_for('camera') }}">Camera</a>
+    </div>
+    
+
+    <div class="content">
+        <h2>PRODUCTS</h2>
+        <p>Use the sidebar to navigate through various management sections.</p>
+    </div>
+    <div class="product-grid">
+        {% for product in seller_products %}
+        <div class="product-item">
+            <a href="{{ url_for('product_details', product_id=product['id']) }}">
+                <img src="{{ url_for('static', filename='images/' + product['image']) }}" 
+                     alt="{{ product['name'] }}" 
+                     class="w-12 h-24 object-cover mx-auto">
+                <h3 class="text-center mt-2">{{ product['name'] }}</h3>
+                <p class="text-center text-gray-700">${{ product['price'] }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - My Shop</title>
+    <style>
+        
+        /* Basic Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body and Main Styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    /* Header and Navigation Bar */
+    header {
+        background-color: #4CAF50; /* Green background */
+        color: #fff;
+        padding: 15px 0;
+        text-align: center;
+    }
+    nav ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    nav ul li {
+        display: inline;
+    }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 15px;
+    }
+    nav ul li a:hover {
+        background-color: #45a049; /* Darker green on hover */
+        border-radius: 5px;
+    }
+
+    /* Button Styling */
+    .button {
+        padding: 10px 20px;
+        background-color: #28a745; /* Green button */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;  /* Add margin for spacing */
+    }
+    .button:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+
+    /* Special Button Styling for "Become a Seller" */
+    .become-seller-button {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 15px;
+        background-color: #28a745;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        
+    }
+    .become-seller-button:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+
+        /* Banner Section */
+        .banner {
+            background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            padding: 20px;
+            flex-direction: column;  /* Center items vertically */
+        }
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Button Styling */
+        .button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;  /* Add margin for spacing */
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+
+        /* Featured Products Section */
+        .products {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .products h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .product-item {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+        .product-item img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .product-item h3 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        .product-item p {
+            color: #888;
+        }
+        .product-item button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .product-item button:hover {
+            background-color: #218838;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        /*new style for flash sales copy it to seller homepage */
+
+        .container {
+        border: 2px solid #000; 
+        padding: 20px; 
+        margin: 20px; 
+        border-radius: 8px;
+        background-color: #000; 
+    }
+
+    #productSlider {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px; 
+    }
+
+    #productSlider > div {
+        flex: 0 0 auto;
+        width: 220px; 
+        border: 2px solid #ccc; 
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center; 
+        background-color: #fff;
+    }
+    
+        img {
+            max-width: 100%; 
+            height: auto; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header and Navigation -->
+    <header>
+        <h1>My Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{{ url_for('product') }}">Products</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li><a href="{{ url_for('sellerdashboard') }}">Sellerdashboard</a></li>
+                <!-- New "Become a Seller" button -->
+            </ul>
+        </nav>
+    </header>
+    {% block content %}
+    <!-- Banner Section -->
+    <section class="banner">
+        <div>
+            <h1>Welcome to My Shop!</h1>
+            <p>Discover amazing products at unbeatable prices.</p>
+            <!-- Login Button -->
+            {% if not session.get('logged_in') %}
+    <a href="/login"><button class="button">Login</button></a>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    
+        
+        <div class = "container">
+            <h2>Flash Sales</h2>
+            <div>
+                <div id="countdown"></div>
+                <div>
+                    <button onclick="scrollLeft()">Prev</button>
+                    <button onclick="scrollRight()">Next</button>
+                </div>
+                
+                <div id="productSlider">
+                    {% for flash_sale_product in flash_sale_products %}
+                    <div>
+                        <a href="{{ url_for('product_details', product_id=flash_sale_product.id) }}">
+                            <img src="{{ url_for('static', filename='images/' + flash_sale_product.image) }}" alt="{{ flash_sale_product.name }}"width = "300" height = "300">
+                            <div>
+                                <h3>{{ flash_sale_product.name }}</h3>
+                                <p>{{ flash_sale_product.description }}</p>
+                                <span>{{ "%.2f"|format(flash_sale_product.price) }}</span>
+                                {% if flash_sale_product.discount_value %}
+                                    <div>
+                                        <span>{{ "%.2f"|format(flash_sale_product.price) }}</span>
+                                        <span>
+                                            {% if flash_sale_product.discount_type == 'percentage' %}
+                                                {{ flash_sale_product.discount_value }}% off
+                                            {% else %}
+                                                {{ "%.2f"|format(flash_sale_product.discount_value) }} off
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                    <span>
+                                        Discounted Price: {{ "%.2f"|format(flash_sale_product.price - (flash_sale_product.price * (flash_sale_product.discount_value / 100)) if flash_sale_product.discount_type == 'percentage' else flash_sale_product.price - flash_sale_product.discount_value) }}
+                                    </span>
+                                {% endif %}
+                            </div>
+                        </a>
+                        <div>
+                            <button onclick="addToCart({ flash_sale_product_id })">Add to Cart</button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    
+            <div class="product-grid">
+                {% for product in seller_products %}
+                <div class="product-item">
+                    <a href="{{ url_for('product_details', product_id=product['id']) }}">
+                        <img src="{{ url_for('static', filename='images/' + product['image']) }}" 
+                             alt="{{ product['name'] }}" 
+                             class="w-12 h-24 object-cover mx-auto">
+                        <h3 class="text-center mt-2">{{ product['name'] }}</h3>
+                        <p class="text-center text-gray-700">${{ product['price'] }}</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    
+    {% endblock content %}
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 My Shop. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
